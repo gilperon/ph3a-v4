@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock</title>
+
+
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+     
+     <link href="window.css" rel="stylesheet">
+
+
+     
+
+        <style>
+          body{
+            background:transparent;
+          }
+          .wv-hero-image-contain {
+  position: relative;
+  width: 100%;
+  max-width: 1480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emailw-main-hero-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* === Cards flutuantes === */
+.floating-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.5;
+  filter: grayscale(100%) blur(8px);
+  transition: all 2s ease-in-out;
+}
+
+.floating-card.reveal { 
+  opacity: 1; 
+  filter: none; 
+}
+
+.emailw-user-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1e2233;
+  color: #eee;
+  padding: 10px 12px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+  font-size: 12px;
+  min-width:170px;
+  max-width: 250px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: relative;
+}
+
+.emailw-user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #333;
+}
+
+.emailw-user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.emailw-user-name { font-weight: 600; }
+.emailw-user-email { font-size: 11px; color: #aaa; }
+
+/* Cursor animado (branco) */
+.emailw-cursor svg {
+  width: 20px;
+  height: 20px;
+  fill: #eee;
+  stroke: #111;
+  stroke-width: 1;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+}
+
+/* Card anônimo */
+.floating-card.anonymous .emailw-user-card {
+  background: #2a2e44;
+  color: #aaa;
+}
+
+.floating-card.anonymous .emailw-user-avatar {
+  filter: grayscale(100%);
+  border-color: #555;
+}
+
+/* ping dot */
+.ping-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(102, 255, 178);
+  animation: ping 1s infinite;
+}
+
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+.ping-dot.active {
+  background: rgb(1, 173, 79);
+  background:rgb(255, 184, 102);;
+  animation: none;
+}
+
+
+.pop { animation: pop 0.65s ease forwards;  }
+
+@keyframes pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+
+/* Hierarquia cards */
+.floating-card.anonymous.searching.reveal {
+  z-index: 40;
+}
+
+.floating-card.searching.reveal:not(.anonymous) {
+  z-index: 50;
+}
+
+.floating-card.pop{
+z-index: 100;
+}
+
+
+
+</style>
+
+
+
+
+</head>
+<body>
+
+
+
+
+
+            <section style="width:100%;padding:clamp(10px,2vw,20px) clamp(20px,4vw,40px);margin:0 auto;">
+
+                <div id="mockContainer" style="position:relative;">
+
+
+
+
+                                        <!--Mock Window-->
+                                        <div class="cs-theme-white" id="mockWindow">
+                                            <div class="cs-window cs-large" id="mockWindow">
+                                            <div class="cs-title-bar">
+                                                <div class="cs-traffic-lights">
+                                                <div class="cs-traffic-light cs-red"></div>
+                                                <div class="cs-traffic-light cs-yellow"></div>
+                                                <div class="cs-traffic-light cs-green"></div>
+                                                </div>
+                                                <div class="cs-filename">Visitantes no seu site</div>
+                                            </div>
+                                            <div class="cs-content">
+                                                <div class="cs-code-line cs-line-1"></div>
+                                                <div class="cs-code-line cs-line-2"></div>
+                                                <div class="cs-code-line cs-line-3"></div>
+                                                <div class="cs-code-line cs-line-4"></div>
+                                                <div class="cs-code-line cs-line-1"></div>
+                                                <div class="cs-code-line cs-line-2"></div>
+                                                <div class="cs-code-line cs-line-1"></div>
+                                                <div class="cs-code-line cs-line-2"></div>
+                                                <div class="cs-code-line cs-line-1"></div>
+                                                <div class="cs-code-line cs-line-2"></div>
+                                            </div>
+                                            <div class="cs-thinking-indicator">
+                                                <div class="cs-thinking-dot"></div>
+                                                <div class="cs-thinking-dot"></div>
+                                                <div class="cs-thinking-dot"></div>
+                                            </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!--Users-->
+                                        <!-- <div id="mockCards" style="position: absolute; top: 20px;bottom:150px; left: 0; width: 100%; height: 100%;">
+                                        </div> -->
+                                        <!--Animation vai respeitar o container abaixo, eu coloco top 40px pra o header da janela e altura 90%, pra nao ir ate o final-->
+                                        <div id="mockCards" style="position: absolute; top: 10px; left: 0; width: 100%; height: 100%;">
+                                        </div> 
+                                        
+
+
+
+                            
+
+
+                    </div>
+                </section>
+
+
+
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const container = document.querySelector('#mockContainer');
+    const mockCardsContainer = document.querySelector('#mockCards');
+    const padding = 30;
+
+    // 1️⃣ Inicial: cards anônimos
+    let initialCards = [
+        { id: 1, name: "Visitante", email: "Identificando...", avatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png", anonymous: true, ping: true },
+        { id: 2, name: "Visitante", email: "Identificando...", avatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png", anonymous: true, ping: true },
+        { id: 3, name: "Visitante", email: "Identificando...", avatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png", anonymous: true, ping: true },
+        { id: 4, name: "Visitante", email: "Identificando...", avatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png", anonymous: true, ping: true },
+        { id: 5, name: "Visitante", email: "Identificando...", avatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png", anonymous: true, ping: true },
+    ];
+
+    // 2️⃣ Final: cards com dados reais
+    let finalCards = [
+        { name: "Lucas M.", email: "lucas.a@gmail.com", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" },
+        { name: "Ana C.", email: "(11) 99401-2042", avatar: "https://randomuser.me/api/portraits/women/44.jpg" },
+        { name: "Pedro H.", email: "010.021.381-10", avatar: "https://randomuser.me/api/portraits/men/50.jpg" },
+        { name: "Marcos A.", email: "michel.a@avon.com", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" },
+        { name: "Vistante", email: "Anônimo", avatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png" },
+    ];
+
+    // Se for mobile, limita para 2 visitantes
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if(isMobile || window.innerWidth < 768){
+      initialCards = initialCards.slice(0, 4);
+      finalCards = finalCards.slice(0, 4);
+    }
+
+    // Função para criar card
+    function createCard(cardData) {
+        const card = document.createElement('div');
+        card.className = `floating-card card-${cardData.id}`;
+        if(cardData.anonymous) card.classList.add('anonymous', 'searching');
+
+        card.innerHTML = `
+            <div class="emailw-cursor">
+                <svg viewBox="0 0 24 24">
+                    <path d="M5.65376 12.3673H5.46026L5.31717 12.4976L0.5 16.8829V1.19841L11.7841 12.3673H5.65376Z"></path>
+                </svg>
+            </div>
+            <div class="emailw-user-card">
+                <img src="${cardData.avatar}" class="emailw-user-avatar">
+                <div class="emailw-user-info">
+                    <div class="emailw-user-name">${cardData.name}</div>
+                    <div class="emailw-user-email">${cardData.email}</div>
+                </div>
+                ${cardData.ping ? '<div class="ping-dot"></div>' : ''}
+            </div>
+        `;
+        mockCardsContainer.appendChild(card);
+        return card;
+    }
+
+    // Posição aleatória
+    function setCardPosition(card) {
+        const containerWidth = container.offsetWidth;
+        const containerHeight = container.offsetHeight;
+        const x = padding + Math.random() * (containerWidth - card.offsetWidth - 2 * padding);
+        const y = padding + Math.random() * (containerHeight - card.offsetHeight - 2 * padding);
+        card.style.left = x + 'px';
+        card.style.top = y + 'px';
+    }
+
+    // Cria os cards iniciais
+    const cards = initialCards.map(createCard);
+
+    // Reveal inicial
+    cards.forEach((card, index) => {
+        setCardPosition(card);
+        setTimeout(() => card.classList.add('reveal'), index * 1200);
+    });
+
+    // Movimento contínuo
+    setInterval(() => {
+        const card = cards[Math.floor(Math.random() * cards.length)];
+        setCardPosition(card);
+        card.style.transition = 'all 2s ease-in-out';
+    }, 2000);
+
+    // Transformar cards anonimos em dados reais sequencialmente
+    // finalCards.forEach((data, i) => {
+    //     setTimeout(() => {
+    //         const anonCard = cards[i]; // pega o card correspondente
+    //         anonCard.classList.remove('anonymous', 'searching');
+    //         anonCard.classList.add('pop');
+    //         anonCard.querySelector('.emailw-user-name').textContent = data.name;
+    //         anonCard.querySelector('.emailw-user-email').textContent = data.email;
+    //         anonCard.querySelector('.emailw-user-avatar').src = data.avatar;
+
+    //         const ping = anonCard.querySelector('.ping-dot');
+    //         if(ping) ping.classList.add('active');
+    //     }, 3000 + i * 2500); // sequencial, cada 1.5s após 3s
+    // });
+
+
+
+    // Transformar cards anonimos em dados reais sequencialmente
+    const baseRealDataDelay = 6000; // primeiro card fica 6s como anônimo
+    const stepDelay = 2500;         // incremento sequencial para os próximos
+
+    finalCards.forEach((data, i) => {
+        setTimeout(() => {
+            const anonCard = cards[i];
+            anonCard.classList.remove('anonymous', 'searching');
+            anonCard.classList.add('pop');
+            anonCard.querySelector('.emailw-user-name').textContent = data.name;
+            anonCard.querySelector('.emailw-user-email').textContent = data.email;
+            anonCard.querySelector('.emailw-user-avatar').src = data.avatar;
+
+            const ping = anonCard.querySelector('.ping-dot');
+            if(ping) ping.classList.add('active');
+        }, baseRealDataDelay + i * stepDelay);
+    });
+
+});
+</script>
+
+
+</body>
+</html>

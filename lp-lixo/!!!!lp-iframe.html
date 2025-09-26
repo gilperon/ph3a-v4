@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cards Flutuantes com Tema</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Tema escuro */
+.wv-hero-image-contain.dark-theme {
+  --card-bg: #1e2233;
+  --card-color: #eee;
+  --avatar-border: #333;
+  --anon-bg: #393c50;
+  --anon-color: #cacaca;
+  --cursor-fill: #eee;
+  --cursor-stroke: #111;
+  --ping-dot-bg: #01D676;
+  --body-bg: linear-gradient(135deg, #0f111a 0%, #121627 50%, #1a1f3b 100%);
+}
+
+/* Tema branco */
+.wv-hero-image-contain.white-theme {
+  --card-bg: #fff;
+  --card-color: #111;
+  --avatar-border: #aaa;
+  --anon-bg: #f2f2f2;
+  --anon-color: #666;
+  --cursor-fill: #111;
+  --cursor-stroke: #eee;
+  --ping-dot-bg: #009b5a;
+  --body-bg: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #e0e0e0 100%);
+}
+
+body {
+  /* background: var(--body-bg);
+  color: var(--card-color); */
+  
+  background:linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background:transparent;
+  overflow:hidden;
+}
+
+.wv-hero-image-contain {
+  position: relative;
+  width: 100%;
+  max-width: 1480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emailw-main-hero-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* Cards flutuantes */
+.floating-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.5;
+  filter: grayscale(100%) blur(8px);
+  transition: all 2s ease-in-out;
+}
+
+.floating-card.reveal { 
+  opacity: 1; 
+  filter: none; 
+}
+
+.emailw-user-card {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card-bg);
+  color: var(--card-color);
+  padding: 7px 10px 9px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+  font-size: 12px;
+  position: relative;
+  width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.emailw-user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--avatar-border);
+}
+
+.emailw-user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.emailw-user-name { font-weight: 600; }
+.emailw-user-email { font-size: 11px; color: #aaa; }
+
+/* Cursor */
+.emailw-cursor svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--cursor-fill);
+  stroke: var(--cursor-stroke);
+  stroke-width: 1;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+}
+
+/* Card anônimo */
+.floating-card.anonymous .emailw-user-card {
+  background: var(--anon-bg);
+  color: var(--anon-color);
+}
+
+.floating-card.anonymous .emailw-user-avatar {
+  filter: grayscale(100%);
+  border-color: var(--avatar-border);
+}
+
+/* Ping dot */
+.ping-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ping-dot-bg);
+  animation: ping 1s infinite;
+}
+
+.ping-dot.active { animation: none; }
+
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+@keyframes pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.floating-card.reveal.pop { animation: pop 0.6s ease forwards; }
+</style>
+</head>
+<body>
+
+<div style="width:700px;height:500px;position: relative">
+  <div class="wv-hero-image-contain white-theme"><!-- altere para white-theme se quiser -->
+
+    <img class="emailw-main-hero-image" 
+      src="https://cdn.prod.website-files.com/63860c8c65e7bef4a1eeebeb/66a6d6a5d4a8126c0f63c87a_1.png" 
+      alt="" style="filter:brightness(0.9) blur(1px);">
+
+    <!-- visitantes anônimos -->
+    <div class="floating-card card-1 anonymous searching">
+      <div class="emailw-cursor">
+        <svg viewBox="0 0 24 24"><path d="M5.65376 12.3673H5.46026L5.31717 12.4976L0.5 16.8829V1.19841L11.7841 12.3673H5.65376Z"></path></svg>
+      </div>
+      <div class="emailw-user-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="emailw-user-avatar">
+        <div class="emailw-user-info">
+          <div class="emailw-user-name">Visitante</div>
+          <div class="emailw-user-email">Identificando...</div>
+        </div>
+        <div class="ping-dot"></div>
+      </div>
+    </div>
+
+    <div class="floating-card card-2 anonymous searching">
+      <div class="emailw-cursor">
+        <svg viewBox="0 0 24 24"><path d="M5.65376 12.3673H5.46026L5.31717 12.4976L0.5 16.8829V1.19841L11.7841 12.3673H5.65376Z"></path></svg>
+      </div>
+      <div class="emailw-user-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="emailw-user-avatar">
+        <div class="emailw-user-info">
+          <div class="emailw-user-name">Visitante</div>
+          <div class="emailw-user-email">Identificando...</div>
+        </div>
+        <div class="ping-dot"></div>
+      </div>
+    </div>
+
+    <div class="floating-card card-3 anonymous searching">
+      <div class="emailw-cursor">
+        <svg viewBox="0 0 24 24"><path d="M5.65376 12.3673H5.46026L5.31717 12.4976L0.5 16.8829V1.19841L11.7841 12.3673H5.65376Z"></path></svg>
+      </div>
+      <div class="emailw-user-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="emailw-user-avatar">
+        <div class="emailw-user-info">
+          <div class="emailw-user-name">Visitante</div>
+          <div class="emailw-user-email">Identificando...</div>
+        </div>
+        <div class="ping-dot"></div>
+      </div>
+    </div>
+
+    <div class="floating-card card-4 anonymous searching">
+      <div class="emailw-cursor">
+        <svg viewBox="0 0 24 24"><path d="M5.65376 12.3673H5.46026L5.31717 12.4976L0.5 16.8829V1.19841L11.7841 12.3673H5.65376Z"></path></svg>
+      </div>
+      <div class="emailw-user-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="emailw-user-avatar">
+        <div class="emailw-user-info">
+          <div class="emailw-user-name">Visitante</div>
+          <div class="emailw-user-email">Identificando...</div>
+        </div>
+        <div class="ping-dot"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const mainImage = document.querySelector('.emailw-main-hero-image');
+  const cards = document.querySelectorAll('.floating-card');
+  const container = document.querySelector('.wv-hero-image-contain');
+  const padding = 30;
+
+  const visitorData = [
+    { name: "Michel A.", email: "michel.a@avon.com", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" },
+    { name: "Ana C.", email: "030.103.10-71", avatar: "https://randomuser.me/api/portraits/women/44.jpg" },
+    { name: "Carlos M.", email: "(11) 99852-1023", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
+    { name: "Lucas P.", email: "lucas.p@exemplo.com", avatar: "https://randomuser.me/api/portraits/men/50.jpg" }
+  ];
+
+  // função para checar sobreposição
+  function isOverlapping(x, y, w, h, movingCard) {
+    for (let other of cards) {
+      if (other === movingCard) continue;
+      const ox = parseFloat(other.style.left);
+      const oy = parseFloat(other.style.top);
+      const ow = other.offsetWidth;
+      const oh = other.offsetHeight;
+      if (!(x + w < ox || x > ox + ow || y + h < oy || y > oy + oh)) return true;
+    }
+    return false;
+  }
+
+  // função para mover um card aleatoriamente
+  function moveCardRandomly(card) {
+    const containerWidth = container.offsetWidth;
+    const containerHeight = container.offsetHeight;
+    const cardWidth = card.offsetWidth;
+    const cardHeight = card.offsetHeight;
+    let newX, newY, tries = 0;
+
+    do {
+      newX = padding + Math.random() * (containerWidth - cardWidth - 2 * padding);
+      newY = padding + Math.random() * (containerHeight - cardHeight - 2 * padding);
+      tries++;
+    } while (isOverlapping(newX, newY, cardWidth, cardHeight, card) && tries < 50);
+
+    card.style.transition = 'all 2s ease-in-out';
+    card.style.left = newX + 'px';
+    card.style.top = newY + 'px';
+  }
+
+  // posição inicial aleatória e movimento imediato
+  cards.forEach((card) => {
+    // posição inicial
+    card.style.left = padding + Math.random() * 300 + 'px';
+    card.style.top = padding + Math.random() * 200 + 'px';
+    
+    // iniciar movimento contínuo
+    setInterval(() => moveCardRandomly(card), 2500);
+  });
+
+  // depois que a imagem carregar, ajusta posições para o tamanho real
+  mainImage.addEventListener('load', () => {
+    cards.forEach((card) => moveCardRandomly(card));
+  });
+
+  // reveal progressivo do blur
+  function progressiveBlurRemoval(index = 0) {
+    if (index >= cards.length) return;
+    cards[index].classList.add('reveal'); 
+    setTimeout(() => progressiveBlurRemoval(index + 1), 2000);
+  }
+  progressiveBlurRemoval();
+
+  // revelar dados reais
+  function revealData(index = 0) {
+    if (index >= cards.length) return;
+    const card = cards[index];
+    const pingDot = card.querySelector('.ping-dot');
+    const nameDiv = card.querySelector('.emailw-user-name');
+    const emailDiv = card.querySelector('.emailw-user-email');
+    const avatarImg = card.querySelector('.emailw-user-avatar');
+
+    card.classList.remove('anonymous', 'searching');
+    pingDot.classList.add('active');
+
+    if(visitorData[index]) {
+      nameDiv.textContent = visitorData[index].name;
+      emailDiv.textContent = visitorData[index].email;
+      avatarImg.src = visitorData[index].avatar;
+    }
+
+    card.classList.add('pop');
+    setTimeout(() => card.classList.remove('pop'), 600);
+
+    setTimeout(() => revealData(index + 1), 3000);
+  }
+
+  setTimeout(() => revealData(0), 3000);
+});
+
+</script>
+
+</body>
+</html>
